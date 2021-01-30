@@ -24,22 +24,38 @@ void setup() {
   servo3.attach(10) ;  // Conectar servo3 al pin 10
   servo4.attach(11) ;   // Conectar servo4 al pin 11
 
+  //posisciones iniciales
   servo1.write(0);
   servo2.write(angulo2);
   servo3.write(angulo3);
   servo4.write(angulo4-5);
+
+  //rutina
   delay(1000);
-  move(servo1,0,180);
+  move(servo1,0,65);
   delay(1000);
-  move(servo1,180,0);
+  move(servo3,angulo3,130);
+  delay(1000);
+  servo4.write(cerrado);
+  delay(1000);
+  move(servo2,angulo2,20);
+  delay(1000);
+  move(servo3,130,180);
+  delay(1000);
+  move(servo1,65,170);
+  delay(1000);
+  servo4.write(abierto);
+  move(servo1,170,65);
+  
+  
+  
+  
+
 }
 
 void loop() {
   //rutina de calibracion
-  delay(1000);
-  move(servo1,0,180);
-  delay(1000);
-  move(servo1,180,0);
+  
 }
 
 void move(Servo servo,int posI,int posF)
