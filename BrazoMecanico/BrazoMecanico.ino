@@ -23,45 +23,45 @@ void setup() {
   servo2.attach(6) ;  // Conectar servo2 al pin 6
   servo3.attach(10) ;  // Conectar servo3 al pin 10
   servo4.attach(11) ;   // Conectar servo4 al pin 11
+
+  servo1.write(0);
+  servo2.write(angulo2);
+  servo3.write(angulo3);
+  servo4.write(angulo4-5);
+  delay(1000);
+  move(servo1,0,180);
+  delay(1000);
+  move(servo1,180,0);
 }
 
 void loop() {
   //rutina de calibracion
+  delay(1000);
+  move(servo1,0,180);
+  delay(1000);
+  move(servo1,180,0);
+}
+
+void move(Servo servo,int posI,int posF)
+{
+  int jumps = 5;
+  int wait = 50;
   
-  //base
-  servo1.write(0);
-  delay(1000);
-  servo1.write(90);
-  delay(1000);
-  servo1.write(180);
-  delay(1000);
-  servo1.write(90);
-  delay(1000);
-
-  //hombro
-  servo2.write(30);
-  delay(1000);
-  servo2.write(100);
-  delay(1000);
-  servo2.write(50);
-  delay(1000);
-  
-  //codo
-  servo3.write(60);
-  delay(1000);
-  servo3.write(180);
-  delay(1000);
-  servo3.write(90);
-
-  //garra
-  servo4.write(cerrado);
-  delay(1000);
-  servo4.write(abierto);
-  delay(1000);
-  servo4.write(cerrado);
-  delay(3000);
-
-
-
+  if(posF>posI)
+  {
+    for(int i = posI ; i <= posF ; i+=jumps)
+    {
+      servo.write(i);
+      delay(wait);
+    }
+  }
+  else if(posI>posF)
+  {
+    for(int i = posI ; i >= posF ; i-=jumps)
+    {
+      servo.write(i);
+      delay(wait);
+    }
+  }
   
 }
